@@ -6,10 +6,8 @@ import Formulario from './src/components/Formulario';
 
 export default function App() {
 
+  const [modalVisible, setModalVisible] = useState(false)
 
-  const nuevaCitaHandler = () => {
-    console.log('diste click....')
-  }
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.titulo}>Administrador de Citas
@@ -23,7 +21,9 @@ export default function App() {
         style={styles.btnTextoNuevaCita}>Nueva cita</Text>
       </Pressable>
 
-      <Formulario />
+      <Formulario 
+        modalVisible={modalVisible}
+      />
 
       </SafeAreaView>
   );
