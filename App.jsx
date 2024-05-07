@@ -1,14 +1,33 @@
 import { StatusBar } from 'expo-status-bar';
-import { SafeAreaView, StyleSheet, Text, TextInput, View } from 'react-native';
-import React from 'react';
+import { Button, Pressable, SafeAreaView, 
+  StyleSheet, Text, TextInput, View, Modal } from 'react-native';
+import React, {useState} from 'react';
 
 export default function App() {
+
+  const [modalVisible, setModalVisible] = useState(false)
+
+  const nuevaCitaHandler = () => {
+    console.log('diste click....')
+  }
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.titulo}>Administrador de Citas
        {' '}
         <Text style={styles.tituloBold}>Veterinaria</Text>
       </Text>
+      <Pressable
+      onPress= {() => setModalVisible(true) }
+      style={styles.btnNuevaCita}>
+        <Text
+        style={styles.btnTextoNuevaCita}>Nueva cita</Text>
+      </Pressable>
+
+      <Modal
+      animationType='slide'
+      visible={modalVisible}>
+          <Text>Desde Modal</Text>
+      </Modal>
       </SafeAreaView>
   );
 };
@@ -28,6 +47,20 @@ const styles = StyleSheet.create({
   tituloBold: {
     fontWeight: '900',
     color: '#6D28D9',
+  },
+  btnNuevaCita:{
+    backgroundColor: '#6D28D9',
+    padding: 15,
+    marginTop: 30,
+    marginHorizontal: 20,
+    borderRadius: 20
+  },
+  btnTextoNuevaCita: {
+    textAlign: 'center',
+    color: '#FFF',
+    fontSize: 18,
+    fontWeight: 'bold',
+    textTransform: 'uppercase'
   }
 })
 
