@@ -2,10 +2,10 @@ import { StatusBar } from 'expo-status-bar';
 import { Button, Pressable, SafeAreaView, 
   StyleSheet, Text, TextInput, View, Modal } from 'react-native';
 import React, {useState} from 'react';
+import Formulario from './src/components/Formulario';
 
 export default function App() {
 
-  const [modalVisible, setModalVisible] = useState(false)
 
   const nuevaCitaHandler = () => {
     console.log('diste click....')
@@ -23,11 +23,8 @@ export default function App() {
         style={styles.btnTextoNuevaCita}>Nueva cita</Text>
       </Pressable>
 
-      <Modal
-      animationType='slide'
-      visible={modalVisible}>
-          <Text>Desde Modal</Text>
-      </Modal>
+      <Formulario />
+
       </SafeAreaView>
   );
 };
