@@ -1,10 +1,12 @@
+import RNDateTimePicker from "@react-native-community/datetimepicker"
 import React, {useState} from "react"
 import { Button, Modal,SafeAreaView,Text, StyleSheet,
     TextInput, View,
-    ScrollView} from "react-native"
+    ScrollView,
+    Pressable} from "react-native"
 import DatePicker from "react-native-date-picker"
 
-const Formulario = ({modalVisible}) =>{
+const Formulario = ({modalVisible, setModalVisible}) =>{
     const [paciente, setPaciente] = useState('')
     const [propietario, setPropietario] = useState('')
     const [email, setEmail] = useState('')
@@ -25,6 +27,13 @@ const Formulario = ({modalVisible}) =>{
             >Nueva {''}
                 <Text style={Styles.tituloBold}>Cita</Text>
             </Text>
+
+            <Pressable 
+            style={Styles.btnCancelar}
+            onLongPress={() => setModalVisible(false)}
+            >
+                <Text style={Styles.btnCancelarTexto}>X Cancelar</Text>
+            </Pressable>
 
             <View style={Styles.campo}>
                 <Text style={Styles.label}>Nombre Paciente</Text>
@@ -75,11 +84,13 @@ const Formulario = ({modalVisible}) =>{
             
             <View style={Styles.campo}>
                 <Text style={Styles.label}>Fecha Alta</Text>
-
-                <DatePicker 
-                    date={fecha}
+                <View style={Styles.fechaContenedor}>
+                <RNDateTimePicker 
+                    value={fecha}
                     locale='es'
+                    onDateChange={ (date)=> setFecha(date)}
                 />
+                </View>
             </View>
 
             <View style={Styles.campo}>
@@ -133,7 +144,28 @@ const Styles = StyleSheet.create({
         borderRadius: 10,
     },
     sintomasInput:{
-        height: 100
+        height: 100,
+        marginBottom:30
+    },
+    fechaContenedor:{
+        backgroundColor: '#FFF',
+        borderRadius: 10
+    },
+    btnCancelar:{
+        marginVertical: 30,
+        backgroundColor: '#5827A4',
+        marginHorizontal: 30,
+        padding: 15,
+        borderRadius: 10,
+        borderWidth: 1,
+        borderColor: '#FFF'
+    },
+    btnCancelarTexto:{
+        color: '#FFF',
+        textAlign: 'center',
+        fontWeight: '900',
+        fontSize: 16,
+        textTransform: 'uppercase'
     }
 
 })

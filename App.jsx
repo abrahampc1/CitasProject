@@ -23,6 +23,7 @@ export default function App() {
 
       <Formulario 
         modalVisible={modalVisible}
+        setModalVisible={setModalVisible}
       />
 
       </SafeAreaView>
